@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('apps', function (Blueprint $table) {
+        Schema::create('appts', function (Blueprint $table) {  // Changed from 'apps' to 'appts'
             $table->id('appt_id');
             $table->string('Patient_LN');
             $table->string('Patient_FN');
@@ -25,6 +25,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('apps');
+        Schema::dropIfExists('appts');  // Changed from 'apps' to 'appts'
     }
 };

@@ -9,23 +9,18 @@ class Appt extends Model
 {
     use HasFactory;
 
-    
-    public $timestamps = false;
-
-  
+    protected $table = 'appts';  // Changed from 'apps' to 'appts'
     protected $primaryKey = 'appt_id';
-
     
     protected $fillable = [
-     'appt_id',
-        'Patient_FN',
         'Patient_LN',
+        'Patient_FN',
         'phone_number',
         'email',
         'HomeAddress',
         'Doctor_Assigned',
         'Date',
         'Time_slot',
-        'Status'
+        'Status',
     ];
 }

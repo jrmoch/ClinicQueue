@@ -4,18 +4,17 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Appt;
 use Carbon\Carbon;
 
 class AppointmentSeeder extends Seeder
 {
     public function run(): void
     {
-        // Clear existing data from the correct table 'apps'
-        DB::table('apps')->truncate();
+        // Clear existing data from 'appts' table
+        DB::table('appts')->truncate();  // Changed from 'apps' to 'appts'
 
         $dummyData = [
-            // ===== AVAILABLE APPOINTMENTS (Future dates) =====
+            // ===== AVAILABLE APPOINTMENTS =====
             [
                 'Patient_LN' => 'Cruz',
                 'Patient_FN' => 'Juan',
@@ -55,8 +54,7 @@ class AppointmentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
-            // ===== WAITING APPOINTMENTS (Today) =====
+            // ===== WAITING APPOINTMENTS =====
             [
                 'Patient_LN' => 'Reyes',
                 'Patient_FN' => 'Miguel',
@@ -96,7 +94,6 @@ class AppointmentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             // ===== ONGOING APPOINTMENT =====
             [
                 'Patient_LN' => 'Villanueva',
@@ -111,7 +108,6 @@ class AppointmentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             // ===== FINISHED APPOINTMENTS =====
             [
                 'Patient_LN' => 'Ramirez',
@@ -139,7 +135,6 @@ class AppointmentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             // ===== CANCELLED APPOINTMENT =====
             [
                 'Patient_LN' => 'Flores',
@@ -156,12 +151,12 @@ class AppointmentSeeder extends Seeder
             ],
         ];
 
-        // Insert all dummy data using DB facade
+        // Insert all dummy data into 'appts' table
         foreach ($dummyData as $data) {
-            DB::table('apps')->insert($data);
+            DB::table('appts')->insert($data);  // Changed from 'apps' to 'appts'
         }
 
-        $this->command->info('✅ ' . count($dummyData) . ' dummy appointments inserted successfully!');
-        $this->command->info('📊 Table: apps | Records: ' . DB::table('apps')->count());
+        $this->command->info('✅ ' . count($dummyData) . ' dummy appointments inserted into appts table!');
+        $this->command->info('📊 Table: appts | Records: ' . DB::table('appts')->count());
     }
 }
