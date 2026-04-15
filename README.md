@@ -174,7 +174,7 @@ Run seeder:
 php artisan db:seed
 
 
-## 🗄️ Database & Dummy Data Configuration
+## Database & Dummy Data Configuration
 
 ### One-Command Setup
 
@@ -252,7 +252,7 @@ For Patients (Clients)
     Click "Find"
     View your appointment details and queue position
 
-## 📸 Screenshots
+## Screenshots
 
 ### Admin Dashboard
 ![Admin Dashboard](images/admin-dashboard.png)
