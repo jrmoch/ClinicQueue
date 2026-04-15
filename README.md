@@ -180,10 +180,9 @@ php artisan db:seed
 
 To set up the entire database with dummy data, run:
 
-
 php artisan migrate --seed
 
- Project Structure
+## Project Structure
 ClinicQueue/
 ├── app/
 │   ├── Http/
@@ -221,7 +220,7 @@ ClinicQueue/
 
 ## Usage Guide
 
-For Administrators
+### For Administrators
 1. View All Appointments
     Go to http://127.0.0.1:8000/
     Table displays all appointments with patient details
@@ -238,7 +237,7 @@ For Administrators
     Click "Delete" button next to any appointment
     Confirm deletion in popup
 
-For Patients (Clients)
+### For Patients (Clients)
 1. Book an Appointment
     Go to http://127.0.0.1:8000/book
     Fill in your personal information
