@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="subhead">
-            <span><i class="fas fa-stethoscope"></i> Real-time patient flow | Light Blue Interface</span>
+            <span><i class="fas fa-stethoscope"></i> Real-time patient flow </span>
             <span><i class="fas fa-arrow-right"></i> Manage appointments, update statuses, or delete entries</span>
         </div>
     </div>

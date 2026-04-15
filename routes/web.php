@@ -18,11 +18,20 @@ Route::get('/api/appointment-status', function () {
                 ->first();
             
             if ($appointment && $appointment->Status == 'Waiting') {
-                // Calculate queue position for waiting appointments on the same date
-                $queuePosition = Appt::where('Status', 'Waiting')
+                // Calculate queue position using loop method (more reliable)
+                $allWaiting = Appt::where('Status', 'Waiting')
                     ->where('Date', $appointment->Date)
-                    ->where('appt_id', '<=', $appointment->appt_id)
-                    ->count();
+                    ->orderBy('appt_id', 'asc')
+                    ->get();
+                
+                $position = 1;
+                foreach ($allWaiting as $index => $waiting) {
+                    if ($waiting->appt_id == $appointment->appt_id) {
+                        $position = $index + 1;
+                        break;
+                    }
+                }
+                $queuePosition = $position;
             }
         }
         
@@ -144,7 +153,7 @@ Route::post('/book', function () {
     return redirect('/queue-status?reference=' . urlencode(request('pnumber')))->with('success', 'Appointment booked successfully! You can track your queue status below.');
 })->name('client.book.submit');
 
-// Client view-only queue status page - FIXED: Now calculates queue position
+// Client view-only queue status page - WITH DEBUGGING
 Route::get('/queue-status', function () {
     $appointment = null;
     $queuePosition = null;
@@ -156,12 +165,33 @@ Route::get('/queue-status', function () {
             ->orWhere('email', $reference)
             ->first();
         
-        // Calculate queue position if appointment is waiting
+        // Calculate queue position using reliable loop method
         if ($appointment && $appointment->Status == 'Waiting') {
-            $queuePosition = Appt::where('Status', 'Waiting')
+            // Get all waiting appointments on the same date, ordered by ID
+            $allWaiting = Appt::where('Status', 'Waiting')
                 ->where('Date', $appointment->Date)
-                ->where('appt_id', '<=', $appointment->appt_id)
-                ->count();
+                ->orderBy('appt_id', 'asc')
+                ->get();
+            
+            // Find position (1-based index)
+            $position = 1;
+            foreach ($allWaiting as $index => $waiting) {
+                if ($waiting->appt_id == $appointment->appt_id) {
+                    $position = $index + 1;
+                    break;
+                }
+            }
+            $queuePosition = $position;
+            
+            // ===== DEBUG CODE - This will log to storage/logs/laravel.log =====
+            \Log::info('========== QUEUE POSITION DEBUG ==========');
+            \Log::info('Appointment ID: ' . $appointment->appt_id);
+            \Log::info('Appointment Date: ' . $appointment->Date);
+            \Log::info('All Waiting IDs on this date: ' . json_encode($allWaiting->pluck('appt_id')->toArray()));
+            \Log::info('Calculated Position: ' . $queuePosition);
+            \Log::info('Total Waiting Count: ' . $allWaiting->count());
+            \Log::info('==========================================');
+            // ===== END DEBUG CODE =====
         }
     }
     

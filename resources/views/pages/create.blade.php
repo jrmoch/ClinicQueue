@@ -25,7 +25,7 @@
             </div>
             <div class="queue-badge">
                 <i class="fas fa-clinic-medical"></i> 
-                <span>ClinicQueue • Light Blue</span>
+                <span>ClinicQueue </span>
             </div>
         </div>
         <div class="subhead">
