@@ -102,7 +102,7 @@ Before installing, ensure your system meets the following requirements:
 
 Open your terminal/command prompt and run:
 
-```bash
+
 git clone https://github.com/jrmoch/ClinicQueue.git
 cd ClinicQueue
 Alternative (Download ZIP):
@@ -180,7 +180,7 @@ php artisan db:seed
 
 To set up the entire database with dummy data, run:
 
-```bash
+
 php artisan migrate --seed
 
  Project Structure
