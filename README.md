@@ -102,7 +102,7 @@ Before installing, ensure your system meets the following requirements:
 
 Open your terminal/command prompt and run:
 
-```bash
+
 git clone https://github.com/jrmoch/ClinicQueue.git
 cd ClinicQueue
 Alternative (Download ZIP):
@@ -174,16 +174,15 @@ Run seeder:
 php artisan db:seed
 
 
-## 🗄️ Database & Dummy Data Configuration
+## Database & Dummy Data Configuration
 
 ### One-Command Setup
 
 To set up the entire database with dummy data, run:
 
-```bash
 php artisan migrate --seed
 
- Project Structure
+## Project Structure
 ClinicQueue/
 ├── app/
 │   ├── Http/
@@ -221,7 +220,7 @@ ClinicQueue/
 
 ## Usage Guide
 
-For Administrators
+### For Administrators
 1. View All Appointments
     Go to http://127.0.0.1:8000/
     Table displays all appointments with patient details
@@ -238,7 +237,7 @@ For Administrators
     Click "Delete" button next to any appointment
     Confirm deletion in popup
 
-For Patients (Clients)
+### For Patients (Clients)
 1. Book an Appointment
     Go to http://127.0.0.1:8000/book
     Fill in your personal information
@@ -252,7 +251,7 @@ For Patients (Clients)
     Click "Find"
     View your appointment details and queue position
 
-## 📸 Screenshots
+## Screenshots
 
 ### Admin Dashboard
 ![Admin Dashboard](images/admin-dashboard.png)
